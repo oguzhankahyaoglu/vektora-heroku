@@ -33,8 +33,7 @@ namespace BayiServiceTest2.Application
 
             //maxReceivedMessageSize="20000000" maxBufferSize="20000000" maxBufferPoolSize="20000000"
             var binding = ws.ChannelFactory.Endpoint.Binding;
-            var basicHttpBinding = binding as BasicHttpBinding;
-            if (basicHttpBinding != null)
+            if (binding is BasicHttpBinding basicHttpBinding)
             {
                 var limit = 2 * 10000 * 1000;
                 basicHttpBinding.MaxBufferPoolSize = limit;

@@ -1,5 +1,4 @@
-﻿@using BayiServiceTest2.Application
-@{
+﻿@{
     //var categories = ViewData["Categories"] as CategoryFor3rdParty[];
     var categories = ServiceCaller.CallVenüsBayi(ws => ws.GetCategoriesAsync(ServiceCaller.AuthToken));
 }

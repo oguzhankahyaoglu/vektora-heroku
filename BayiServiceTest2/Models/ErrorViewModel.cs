@@ -1,5 +1,3 @@
-using System;
-
 namespace BayiServiceTest2.Models
 {
     public class ErrorViewModel
