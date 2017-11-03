@@ -1,5 +1,7 @@
-﻿@{
-    var categories = ViewData["Categories"] as CategoryFor3rdParty[];
+﻿@using BayiServiceTest2.Application
+@{
+    //var categories = ViewData["Categories"] as CategoryFor3rdParty[];
+    var categories = ServiceCaller.CallVenüsBayi(ws => ws.GetCategoriesAsync(ServiceCaller.AuthToken));
 }
 
 <!DOCTYPE html>
@@ -53,7 +55,7 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    <div class="container body-content">
+    <div class="container-fluid body-content">
         @RenderBody()
         <hr />
         <footer>

@@ -18,10 +18,10 @@ namespace BayiServiceTest2.Application
             //    return;
             //}
 
-            if (filterContext.Result is ViewResult viewResult)
-            {
-                viewResult.ViewData["Categories"] = ServiceCaller.CallVenüsBayi(ws => ws.GetCategoriesAsync(ServiceCaller.AuthToken));
-            }
+            //if (filterContext.Result is ViewResult viewResult)
+            //{
+            //    viewResult.ViewData["Categories"] = ServiceCaller.CallVenüsBayi(ws => ws.GetCategoriesAsync(ServiceCaller.AuthToken));
+            //}
             base.OnActionExecuted(filterContext);
         }
     }
