@@ -12958,11 +12958,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\BitBucket\\examples\\Heroku\\BayiServiceTest\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "C:\\BitBucket\\Examples\\vektora-heroku\\BayiServiceTest\\WebApplication1\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "C:\\BitBucket\\examples\\Heroku\\BayiServiceTest\\WebApplication1\\WebApplication1.csproj",
+      "projectPath": "C:\\BitBucket\\Examples\\vektora-heroku\\BayiServiceTest\\WebApplication1\\WebApplication1.csproj",
       "packagesPath": "C:\\Users\\VKT-OGUZHANK\\.nuget\\packages\\",
-      "outputPath": "C:\\BitBucket\\examples\\Heroku\\BayiServiceTest\\WebApplication1\\obj\\",
+      "outputPath": "C:\\BitBucket\\Examples\\vektora-heroku\\BayiServiceTest\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
