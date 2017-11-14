@@ -1,4 +1,6 @@
-﻿using BayiServiceTest2.Application;
+﻿using System;
+using BayiServiceTest2.Application;
+using CachedRepos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +13,7 @@ namespace BayiServiceTest2
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            CachedRepoBase.DefaultExpireDate = () => DateTime.Now.AddMinutes(5);
         }
 
         public IConfiguration Configuration { get; }
@@ -18,6 +21,7 @@ namespace BayiServiceTest2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMemoryCache();
             services.AddMvc(options=> options.Filters.Add(new PrepareHeaderMenuAttribute()));
         }
 

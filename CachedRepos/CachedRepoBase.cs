@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 
 namespace CachedRepos
@@ -33,6 +34,13 @@ namespace CachedRepos
     public class CachedRepoBase<T> : CachedRepoBase
         where T : class
     {
+        protected IMemoryCache _cache;
+
+        public CachedRepoBase(IMemoryCache cache)
+        {
+            _cache = cache;
+        }
+
         protected virtual string GetCacheKey()
         {
             return "CachedRepoBase-" + GetType().FullName;
@@ -42,10 +50,10 @@ namespace CachedRepos
         {
             lock (LOCK)
             {
-                if (!CACHES.ContainsKey(key))
+                object cachedItem;
+                if (!_cache.TryGetValue(key, out cachedItem))
                     return null;
 
-                var cachedItem = CACHES[key];
                 if (cachedItem == null)
                     return null;
                 var casted = cachedItem as T;
@@ -54,8 +62,6 @@ namespace CachedRepos
                 return casted;
             }
         }
-
-        protected static Dictionary<string, object> CACHES = new Dictionary<string, object>();
 
         /// <summary>
         /// Runtime Cache'e yazmakla görevlidir. Default davranışı 15 gün cache'de kalacak ve NotRemovable olacak şekilde cache'lemektir.
@@ -69,11 +75,9 @@ namespace CachedRepos
             lock (LOCK)
             {
                 if (value == null)
-                    CACHES.Remove(key);
+                    _cache.Remove(key);
                 else
-                {
-                    CACHES.Add(key, value);
-                }
+                    _cache.Set(key, value, CachedRepoBase.DefaultExpireDate());
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace CachedRepos
 {
@@ -12,18 +13,16 @@ namespace CachedRepos
     public abstract class CachedObject<T> : CachedRepoBase<T>
         where T : class
     {
+        protected CachedObject(IMemoryCache cache) : base(cache)
+        {
+        }
+
         #region Get Cached Entities (private)
 
         private T CachedEntities
         {
-            get
-            {
-                return GetFromCache(GetCacheKey());
-            }
-            set
-            {
-                SetCache(GetCacheKey(), value);
-            }
+            get => GetFromCache(GetCacheKey());
+            set => SetCache(GetCacheKey(), value);
         }
 
         #endregion

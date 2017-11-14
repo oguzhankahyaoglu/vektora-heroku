@@ -1,7 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-    var banners = new BannerRepo().GetCachedEntities().ToArray();
-    var categories = new CategoryRepo().GetCachedEntities().ToArray();
+    var banners = ViewData["banners"] as VestelBanner[];
+    var categories = ViewData["categories"] as CategoryFor3rdParty[];
+    var productsDic = ViewData["products"] as Dictionary<string, ProductFor3rdParty[]>;
 }
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
@@ -44,7 +45,7 @@
                 <h2>@category2.DisplayName</h2>
                 @foreach (var category3 in category2.SubCategories)
                 {
-                    var products = new ProductRepo().Get(false, category3.CategoryID);
+                    var products = productsDic[$"{category.CategoryID}-{category2.CategoryID}-{category3.CategoryID}"];
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">@category3.DisplayName</h3>

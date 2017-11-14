@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace CachedRepos
 {
@@ -14,6 +15,9 @@ namespace CachedRepos
     public abstract class CachedDictionary<TEntity, TKey1, TKey2, TKey3> : CachedDictionary<TEntity, Tuple<TKey1, TKey2, TKey3>>
     //where TEntity : class
     {
+        protected CachedDictionary(IMemoryCache cache) : base(cache)
+        {
+        }
     }
 
     /// <summary>
@@ -24,6 +28,9 @@ namespace CachedRepos
     public abstract class CachedDictionary<TEntity, TKey1, TKey2> : CachedDictionary<TEntity, Tuple<TKey1, TKey2>>
     //where TEntity : class
     {
+        protected CachedDictionary(IMemoryCache cache) : base(cache)
+        {
+        }
     }
 
     /// <summary>
@@ -34,6 +41,9 @@ namespace CachedRepos
     public abstract class CachedDictionary<TEntity> : CachedDictionary<TEntity, int>
     //where TEntity : class
     {
+        protected CachedDictionary(IMemoryCache cache) : base(cache)
+        {
+        }
     }
 
     #endregion
@@ -50,6 +60,10 @@ namespace CachedRepos
     //where TGetResult : class
     {
         #region Get Cached Entities (private)
+
+        protected CachedDictionary(IMemoryCache cache) : base(cache)
+        {
+        }
 
         private Dictionary<TKey, TEntity> CachedEntities
         {
